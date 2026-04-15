@@ -1,0 +1,40 @@
+{
+    "appName": "node-retail-store-checkout",
+    "projectName": "retail-store",
+    "nexusGroup": "platform",
+    "nexusProject": "retail-store",
+    "DEV": {
+      "appServers": [
+        {
+          "appConfig": {
+            "DB_HOST": "172.16.2.177",
+            "DB_NAME": "LOSBTNLOGIN165"
+          },
+          "appSecrets": {
+            "DB_USER": "iloantesting",
+            "DB_PASSWORD": "enc:/XZnCWL+9padXyTu32wJPA==",
+            "DB_CONN_KEY": "2SUtlRSL/qHsoeTOT83zDSr7XCZb3KFFFOoNt7j9Jhw=",
+            "DB_CONN_IV": "2r4aZNMMvhJJgUxQllffyg=="
+          }
+        }
+      ]
+    },
+    "PROD": {
+      "appServers": [
+        {
+          "dstVersion": "v1.0.0",
+          "appConfig": {
+            "DB_HOST": "db-loan.btn.co.id",
+            "DB_NAME": "LOSBTNLOGIN",
+            "SoapService__LosCrmsUrl": "https://middleware.btn.co.id:7080/konven/loscrms"
+          },
+          "appSecrets": {
+            "DB_USER": "iloanprod",
+            "DB_PASSWORD": "enc:NzneC9RtHl9/cDPn3W/ajQ==",
+            "DB_CONN_KEY": "2SUtlRSL/qHsoeTOT83zDSr7XCZb3KFFFOoNt7j9Jhw=",
+            "DB_CONN_IV": "2r4aZNMMvhJJgUxQllffyg=="
+          }
+        }
+      ]
+    }
+  }
