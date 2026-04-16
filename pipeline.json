@@ -6,16 +6,16 @@
     "DEV": {
       "appServers": [
         {
-          "appConfig": {
-            "DB_HOST": "172.16.2.177",
-            "DB_NAME": "LOSBTNLOGIN165"
-          },
-          "appSecrets": {
-            "DB_USER": "iloantesting",
-            "DB_PASSWORD": "enc:/XZnCWL+9padXyTu32wJPA==",
-            "DB_CONN_KEY": "2SUtlRSL/qHsoeTOT83zDSr7XCZb3KFFFOoNt7j9Jhw=",
-            "DB_CONN_IV": "2r4aZNMMvhJJgUxQllffyg=="
-          }
+          "appConfig": {},
+          "appSecrets": {}
+        }
+      ]
+    },
+    "SIT": {
+      "appServers": [
+        {
+          "appConfig": {},
+          "appSecrets": {}
         }
       ]
     },
