@@ -16,8 +16,10 @@
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest --coverage",
-    "test:watch": "jest --watch",
+    "test:ci": "jest --coverage --reporters=default --reporters=jest-junit",
     "test:cov": "jest --coverage",
+    "test:cov:xml": "jest --coverage --coverageReporters=cobertura --coverageReporters=lcov --coverageReporters=text",
+    "test:watch": "jest --watch",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:integration": "jest --config ./test/jest-e2e.json"
   },
@@ -56,6 +58,7 @@
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.5.1",
     "jest": "30.0.4",
+    "jest-junit": "16.0.0",
     "prettier": "^3.6.2",
     "source-map-support": "^0.5.21",
     "supertest": "^7.1.1",
@@ -79,9 +82,39 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "**/*.(t|j)s",
+      "!**/*.module.(t|j)s",
+      "!**/main.(t|j)s",
+      "!**/tracing.(t|j)s",
+      "!**/clients/**",
+      "!**/*.d.ts"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "coverageReporters": [
+      "html",
+      "lcov",
+      "text",
+      "json-summary"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 60,
+        "branches": 60,
+        "functions": 50,
+        "lines": 60
+      }
+    },
+    "testEnvironment": "node",
+    "reporters": [
+      "default"
+    ]
+  },
+  "jest-junit": {
+    "outputDirectory": "reports",
+    "outputName": "junit.xml",
+    "classNameTemplate": "{classname}",
+    "titleTemplate": "{title}",
+    "ancestorSeparator": " › ",
+    "usePathForSuiteName": "true"
   }
 }

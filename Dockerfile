@@ -1,10 +1,19 @@
 FROM node:20-alpine AS build
 WORKDIR /usr/src/app
-COPY --chown=node:node package*.json ./
+COPY --chown=node:node package*.json yarn.lock ./
 COPY --chown=node:node . .
 RUN yarn install --frozen-lockfile
 RUN yarn build
 USER node
+
+
+FROM build AS test
+USER root
+RUN mkdir -p /usr/src/app/reports /usr/src/app/coverage && \
+    chown -R node:node /usr/src/app/reports /usr/src/app/coverage
+USER node
+ENV NODE_ENV=test
+CMD ["yarn", "test:ci"]
 
 
 FROM public.ecr.aws/amazonlinux/amazonlinux:2023
