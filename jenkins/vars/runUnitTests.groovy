@@ -69,8 +69,6 @@ def call(Map params = [:]) {
               --rm \
               --name ${containerName} \
               --env NODE_ENV=${nodeEnv} \
-              --env JEST_JUNIT_OUTPUT_DIR=${reportsDir} \
-              --env JEST_JUNIT_OUTPUT_NAME=junit.xml \
               -v \$(pwd)/${reportsDir}:/usr/src/app/${reportsDir} \
               -v \$(pwd)/${coverageDir}:/usr/src/app/${coverageDir} \
               ${testImage}
@@ -125,7 +123,7 @@ private def _publishReports(String reportsDir, String coverageDir) {
     }
 
     // Archive raw coverage artifacts (lcov, json-summary) for SonarQube / downstream use
-    archiveArtifacts artifacts: "${coverageDir}/lcov.info, ${coverageDir}/coverage-final.json",
+    archiveArtifacts artifacts: "${coverageDir}/lcov.info, ${coverageDir}/coverage-final.json, ${coverageDir}/coverage-summary.json",
                      allowEmptyArchive: true
     echo "[runUnitTests] Coverage artifacts archived"
 }
